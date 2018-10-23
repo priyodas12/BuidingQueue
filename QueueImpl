@@ -1,0 +1,60 @@
+package com.priyo.queue;
+
+public class Queue {
+	
+	int front;
+	int rear;
+	static int size;
+	private Object [] sampleQueue;
+	
+	Queue(int size){
+		sampleQueue=new Object[size];
+		front=0;
+		rear=size;
+	}
+	
+	public boolean isEmpty(){
+		return front==0;
+	}
+	
+	public boolean isFull(){
+		return front==rear;
+	}
+	
+	public void enQueue(Object obj) throws Exception{
+		if(isFull()){ 
+			throw new Exception("Queue is Full");
+			}
+		
+		sampleQueue[front]=obj;
+		front=front+1;
+		System.out.println(obj+" added ");
+		
+	}
+	
+	public Object deQueue() throws Exception{
+		if(isEmpty()){
+			throw new Exception("Queue is Empty");
+		}
+		Object obj=sampleQueue[rear-1];
+		System.out.println(obj+" removed ");
+		rear=rear-1;
+		return obj;
+		
+	}
+	public static void main(String[] args) throws Exception {
+		
+		Queue q=new Queue(5);
+		q.enQueue("10");
+		q.enQueue("10");
+		q.enQueue("10");
+		q.enQueue("11");
+		q.enQueue("19");
+		q.deQueue();
+		
+		for(int i=0;i< q.rear;i++){
+			System.out.print("\t"+q.sampleQueue[i]);
+		}
+	}
+
+}
